@@ -37,20 +37,9 @@
 
     .section { padding: 72px 0; }
 
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(214,168,79,0.08);
-      color: var(--gold-2);
-      font-size: 12px;
-      margin-bottom: 18px;
-      font-weight: bold;
-    }
-
-    h1 { font-size: clamp(38px, 7vw, 88px); margin-bottom: 18px; }
-    h2 { font-size: clamp(28px, 4vw, 54px); margin-bottom: 18px; }
-    h3 { font-size: 24px; margin-bottom: 12px; }
+    h1 { font-size: clamp(38px, 7vw, 88px); }
+    h2 { font-size: clamp(28px, 4vw, 54px); }
+    h3 { font-size: 24px; }
 
     .hero {
       min-height: 100vh;
@@ -64,47 +53,46 @@
       gap: 36px;
     }
 
+    .highlight { color: var(--gold-2); }
+
+    .btn {
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #000;
+    }
+
     .hero-card {
       background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: 28px;
+      border-radius: 24px;
       padding: 26px;
     }
 
-    .hero-stat strong { font-size: 28px; display: block; }
+    .hero-stat strong { font-size: 30px; display: block; }
 
-    .service-list span {
-      padding: 10px 14px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 999px;
-      font-size: 13px;
-    }
-
-    .service-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
 
     .gallery-item {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 14px;
+      background: rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 16px;
       text-align: center;
     }
 
     .gallery-item img {
       width: 100%;
       border-radius: 12px;
+      cursor: zoom-in;
     }
 
     .gallery-caption {
       margin-top: 10px;
       font-size: 14px;
-      color: #ccc;
     }
 
     .lightbox {
@@ -120,8 +108,8 @@
     .lightbox.active { display: flex; }
 
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 95%;
+      max-height: 90vh;
       border-radius: 12px;
     }
 
@@ -129,13 +117,14 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      font-size: 28px;
+      font-size: 30px;
       color: white;
       cursor: pointer;
     }
 
-    @media (max-width: 980px) {
-      .hero-grid, .grid-2 { grid-template-columns: 1fr; }
+    @media(max-width:980px){
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -144,118 +133,110 @@
 
 <section class="hero">
   <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">GG Digital LTDA</span>
-      <h1>Presença digital que chama atenção e gera resultado.</h1>
 
-      <div class="service-list">
-        <span>Marketing</span>
-        <span>Branding</span>
-        <span>Vídeo</span>
-        <span>Meta Ads</span>
-        <span>TikTok Ads</span>
+    <div>
+      <h1>Presença digital que <span class="highlight">chama atenção</span></h1>
+
+      <div style="margin-top:20px;">
+        <a href="#cases" class="btn btn-primary">Ver projetos</a>
       </div>
     </div>
 
     <div class="hero-card">
-      <div class="hero-stat"><strong>Latam + Europa</strong></div>
-      <div class="hero-stat"><strong>Conteúdo + Performance</strong></div>
-      <div class="hero-stat"><strong>Solução completa</strong></div>
+      <div class="hero-stat">
+        <strong>Latam + Europa</strong>
+        <span>Experiência internacional</span>
+      </div>
+      <div class="hero-stat">
+        <strong>Conteúdo + Performance</strong>
+      </div>
+      <div class="hero-stat">
+        <strong>Solução completa</strong>
+      </div>
     </div>
+
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="cases">
   <div class="container">
 
     <h2>Provas e materiais</h2>
 
-    <h3>Facebook Ads</h3>
+    <!-- FACEBOOK -->
     <div class="grid-2">
 
       <div class="gallery-item">
-        <a href="1 dia 45k.jpg" class="gallery-link">
-          <img src="1 dia 45k.jpg">
-        </a>
-        <div class="gallery-caption">Resultado 45k</div>
+        <img src="1%20dia%2045k.jpg">
+        <div class="gallery-caption">Resultado campanha</div>
       </div>
 
       <div class="gallery-item">
-        <a href="campanha mx eq col.jpg" class="gallery-link">
-          <img src="campanha mx eq col.jpg">
-        </a>
+        <img src="campanha%20mx%20eq%20col.jpg">
         <div class="gallery-caption">Campanhas Latam</div>
       </div>
 
       <div class="gallery-item">
-        <a href="conta anuncio facebook equador.png" class="gallery-link">
-          <img src="conta anuncio facebook equador.png">
-        </a>
+        <img src="conta%20anuncio%20facebook%20equador.png">
         <div class="gallery-caption">Conta Facebook</div>
       </div>
 
       <div class="gallery-item">
-        <a href="roi.png" class="gallery-link">
-          <img src="roi.png">
-        </a>
+        <img src="roi.png">
         <div class="gallery-caption">ROI</div>
       </div>
 
     </div>
 
-    <h3 style="margin-top:40px;">TikTok Ads</h3>
+    <!-- TIKTOK -->
+    <h3 style="margin-top:40px;">TikTok</h3>
+
     <div class="grid-2">
       <div class="gallery-item">
-        <a href="tiktok espanha.png" class="gallery-link">
-          <img src="tiktok espanha.png">
-        </a>
+        <img src="tiktok%20espanha.png">
         <div class="gallery-caption">TikTok Espanha</div>
       </div>
     </div>
 
+    <!-- SHOPIFY -->
     <h3 style="margin-top:40px;">Shopify</h3>
+
     <div class="grid-2">
       <div class="gallery-item">
-        <a href="majestik colombia.jpg" class="gallery-link">
-          <img src="majestik colombia.jpg">
-        </a>
-        <div class="gallery-caption">Shopify Colômbia</div>
+        <img src="majestik%20colombia.jpg">
+        <div class="gallery-caption">Colômbia</div>
       </div>
     </div>
 
-    <h3 style="margin-top:40px;">Estruturas utilizadas</h3>
+    <!-- CASES -->
+    <h3 style="margin-top:40px;">Estruturas</h3>
+
     <div class="grid-2">
 
       <div class="gallery-item">
-        <a href="claréasite.png" class="gallery-link">
-          <img src="claréasite.png">
-        </a>
+        <img src="clar%C3%A9asite.png">
         <div class="gallery-caption">Case - Equador</div>
       </div>
 
       <div class="gallery-item">
-        <a href="novembersite.png" class="gallery-link">
-          <img src="novembersite.png">
-        </a>
+        <img src="novembersite.png">
         <div class="gallery-caption">Case - Espanha</div>
       </div>
 
     </div>
 
-    <h3 style="margin-top:40px;">Projeto Japiim</h3>
+    <!-- JAPIIM -->
+    <h3 style="margin-top:40px;">Japiim</h3>
+
     <div class="grid-2">
 
       <div class="gallery-item">
-        <a href="japiim e amiguinhos.png" class="gallery-link">
-          <img src="japiim e amiguinhos.png">
-        </a>
+        <img src="japiim%20e%20amiguinhos.png">
         <div class="gallery-caption">Japiim e Amiguinhos</div>
       </div>
 
       <div class="gallery-item">
-        <a href="japiim.png" class="gallery-link">
-          <img src="japiim.png">
-        </a>
+        <img src="japiim.png">
         <div class="gallery-caption">Japiim</div>
       </div>
 
@@ -264,31 +245,27 @@
   </div>
 </section>
 
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <span class="lightbox-close" id="close">×</span>
-  <img id="lightbox-img">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightboxImg">
 </div>
 
 <script>
-  const links = document.querySelectorAll('.gallery-link');
-  const lightbox = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
+  const imgs = document.querySelectorAll(".gallery-item img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
 
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      img.src = link.href;
-      lightbox.classList.add('active');
-    });
+  imgs.forEach(img => {
+    img.onclick = () => {
+      lightbox.classList.add("active");
+      lightboxImg.src = img.src;
+    }
   });
 
-  document.getElementById('close').onclick = () => {
-    lightbox.classList.remove('active');
-  };
-
-  lightbox.onclick = (e) => {
-    if(e.target === lightbox) lightbox.classList.remove('active');
-  };
+  function closeLightbox(){
+    lightbox.classList.remove("active");
+  }
 </script>
 
 </body>
