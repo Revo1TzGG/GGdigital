@@ -408,6 +408,17 @@
       overflow: hidden;
     }
 
+    .gallery-link {
+      display: block;
+      width: 100%;
+      cursor: zoom-in;
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-link:hover {
+      transform: scale(1.015);
+    }
+
     .gallery-item img {
       width: 100%;
       height: auto;
@@ -426,6 +437,53 @@
       font-size: 14px;
       font-weight: 600;
       line-height: 1.4;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 9999;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 96vw;
+      max-height: 96vh;
+    }
+
+    .lightbox img {
+      max-width: 96vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 999px;
+      background: white;
+      color: black;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
     }
 
     .cta {
@@ -719,19 +777,30 @@
       <h3 style="margin-top:28px;">Facebook Ads — Operações Latam</h3>
       <div class="grid-2" style="margin-top:16px;">
         <div class="gallery-item">
-          <img src="1%20dia%2045k.jpg" alt="Facebook Ads Latam - 1 dia 45k">
+          <a href="1%20dia%2045k.jpg" class="gallery-link" data-lightbox="Resultado de campanha — 1 dia / 45k">
+            <img src="1%20dia%2045k.jpg" alt="Resultado de campanha — 1 dia / 45k">
+          </a>
           <div class="gallery-caption">Resultado de campanha — 1 dia / 45k</div>
         </div>
+
         <div class="gallery-item">
-          <img src="campanha%20mx%20eq%20col.jpg" alt="Facebook Ads Latam - Campanhas MX EQ COL">
+          <a href="campanha%20mx%20eq%20col.jpg" class="gallery-link" data-lightbox="Campanhas rodando — México, Equador e Colômbia">
+            <img src="campanha%20mx%20eq%20col.jpg" alt="Campanhas rodando — México, Equador e Colômbia">
+          </a>
           <div class="gallery-caption">Campanhas rodando — México, Equador e Colômbia</div>
         </div>
+
         <div class="gallery-item">
-          <img src="conta%20anuncio%20facebook%20equador.png" alt="Conta de anúncio Facebook Equador">
+          <a href="conta%20anuncio%20facebook%20equador.png" class="gallery-link" data-lightbox="Conta de anúncio — Facebook Equador">
+            <img src="conta%20anuncio%20facebook%20equador.png" alt="Conta de anúncio — Facebook Equador">
+          </a>
           <div class="gallery-caption">Conta de anúncio — Facebook Equador</div>
         </div>
+
         <div class="gallery-item">
-          <img src="roi.png" alt="ROI de campanhas">
+          <a href="roi.png" class="gallery-link" data-lightbox="Performance e retorno sobre investimento">
+            <img src="roi.png" alt="Performance e retorno sobre investimento">
+          </a>
           <div class="gallery-caption">Performance e retorno sobre investimento</div>
         </div>
       </div>
@@ -739,7 +808,9 @@
       <h3 style="margin-top:36px;">TikTok Ads — Campanhas Espanha</h3>
       <div class="grid-2" style="margin-top:16px;">
         <div class="gallery-item">
-          <img src="tiktok%20espanha.png" alt="TikTok Ads Espanha">
+          <a href="tiktok%20espanha.png" class="gallery-link" data-lightbox="Conta de anúncio TikTok — Espanha">
+            <img src="tiktok%20espanha.png" alt="Conta de anúncio TikTok — Espanha">
+          </a>
           <div class="gallery-caption">Conta de anúncio TikTok — Espanha</div>
         </div>
       </div>
@@ -747,7 +818,9 @@
       <h3 style="margin-top:36px;">Operação de vendas — Shopify Colômbia</h3>
       <div class="grid-2" style="margin-top:16px;">
         <div class="gallery-item">
-          <img src="majestik%20colombia.jpg" alt="Shopify Colômbia">
+          <a href="majestik%20colombia.jpg" class="gallery-link" data-lightbox="Painel Shopify — Colômbia">
+            <img src="majestik%20colombia.jpg" alt="Painel Shopify — Colômbia">
+          </a>
           <div class="gallery-caption">Painel Shopify — Colômbia</div>
         </div>
       </div>
@@ -755,11 +828,16 @@
       <h3 style="margin-top:36px;">Estruturas de loja e operações utilizadas</h3>
       <div class="grid-2" style="margin-top:16px;">
         <div class="gallery-item">
-          <img src="clar%C3%A9asite.png" alt="Loja em operação no Equador">
+          <a href="clar%C3%A9asite.png" class="gallery-link" data-lightbox="Loja em operação — Equador">
+            <img src="clar%C3%A9asite.png" alt="Loja em operação — Equador">
+          </a>
           <div class="gallery-caption">Loja em operação — Equador</div>
         </div>
+
         <div class="gallery-item">
-          <img src="novembersite.png" alt="Loja em operação na Espanha">
+          <a href="novembersite.png" class="gallery-link" data-lightbox="Loja em operação — Espanha">
+            <img src="novembersite.png" alt="Loja em operação — Espanha">
+          </a>
           <div class="gallery-caption">Loja em operação — Espanha</div>
         </div>
       </div>
@@ -767,11 +845,16 @@
       <h3 style="margin-top:36px;">Conteúdo e presença digital — Projeto Japiim</h3>
       <div class="grid-2" style="margin-top:16px;">
         <div class="gallery-item">
-          <img src="japiim%20e%20amiguinhos.png" alt="Canal e conteúdo do Projeto Japiim">
+          <a href="japiim%20e%20amiguinhos.png" class="gallery-link" data-lightbox="Canal / conteúdo — Japiim e Amiguinhos">
+            <img src="japiim%20e%20amiguinhos.png" alt="Canal / conteúdo — Japiim e Amiguinhos">
+          </a>
           <div class="gallery-caption">Canal / conteúdo — Japiim e Amiguinhos</div>
         </div>
+
         <div class="gallery-item">
-          <img src="japiim.png" alt="Conteúdo do Projeto Japiim">
+          <a href="japim.png" class="gallery-link" data-lightbox="Canal / conteúdo — Japiim">
+            <img src="japim.png" alt="Canal / conteúdo — Japiim">
+          </a>
           <div class="gallery-caption">Canal / conteúdo — Japiim</div>
         </div>
       </div>
@@ -800,6 +883,49 @@
     </div>
   </footer>
 
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">×</button>
+      <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryLinks = document.querySelectorAll('.gallery-link');
+
+    galleryLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        lightboxImg.src = this.getAttribute('href');
+        lightboxImg.alt = this.dataset.lightbox || 'Imagem ampliada';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+
 </body>
-</html>
 </html>
