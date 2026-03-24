@@ -4,20 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GG Digital LTDA | Portfólio</title>
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #060606;
+      --bg-soft: #101010;
       --card: rgba(255,255,255,0.06);
       --stroke: rgba(255,255,255,0.12);
       --text: #f5f5f5;
       --muted: #bdbdbd;
       --gold: #d6a84f;
       --gold-2: #f4d28b;
+      --red: #d83434;
+      --accent: #ffffff;
       --shadow: 0 20px 60px rgba(0,0,0,0.45);
       --radius: 24px;
+      --radius-sm: 16px;
       --max: 1180px;
     }
 
@@ -25,248 +27,862 @@
       font-family: Arial, Helvetica, sans-serif;
       background:
         radial-gradient(circle at top left, rgba(214,168,79,0.16), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(216,52,52,0.10), transparent 18%),
         linear-gradient(180deg, #050505 0%, #0a0a0a 38%, #050505 100%);
       color: var(--text);
+      line-height: 1.5;
     }
 
+    a { color: inherit; text-decoration: none; }
+
     .container {
+      width: 100%;
       max-width: var(--max);
-      margin: auto;
+      margin: 0 auto;
       padding: 0 22px;
     }
 
-    .section { padding: 72px 0; }
+    .section {
+      padding: 72px 0;
+      position: relative;
+    }
 
-    h1 { font-size: clamp(38px, 7vw, 88px); }
-    h2 { font-size: clamp(28px, 4vw, 54px); }
-    h3 { font-size: 24px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(214,168,79,0.35);
+      border-radius: 999px;
+      background: rgba(214,168,79,0.08);
+      color: var(--gold-2);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 18px;
+      font-weight: bold;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 88px);
+      max-width: 980px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 54px);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    p.lead {
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: #d2d2d2;
+      max-width: 860px;
+    }
+
+    p.text {
+      color: var(--muted);
+      font-size: 17px;
+    }
 
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.36) 45%, rgba(0,0,0,0.82) 100%),
+        url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      opacity: 0.52;
+      transform: scale(1.04);
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 36px;
+      align-items: center;
+      width: 100%;
     }
 
-    .highlight { color: var(--gold-2); }
+    .hero-copy {
+      padding: 40px 0;
+    }
+
+    .highlight {
+      color: var(--gold-2);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
 
     .btn {
       padding: 16px 24px;
       border-radius: 999px;
       font-weight: bold;
-      display: inline-block;
+      font-size: 15px;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      color: #000;
+      color: #090909;
+      box-shadow: 0 10px 30px rgba(214,168,79,0.22);
     }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      color: white;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
 
     .hero-card {
-      background: var(--card);
-      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
       padding: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
 
-    .hero-stat strong { font-size: 30px; display: block; }
+    .hero-stat {
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .hero-stat:last-child { border-bottom: 0; }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 34px;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .card.soft {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 24px;
+      background: linear-gradient(135deg, rgba(214,168,79,0.22), rgba(255,255,255,0.06));
+      border: 1px solid rgba(214,168,79,0.25);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .statement {
+      font-size: clamp(24px, 3vw, 42px);
+      max-width: 980px;
+      color: #f0f0f0;
+    }
+
+    .statement strong { color: var(--gold-2); }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .service-list span {
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      color: #efefef;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .media-placeholder {
+      min-height: 300px;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(214,168,79,0.18), rgba(255,255,255,0.03)),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px dashed rgba(214,168,79,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #f1d8a2;
+      font-weight: bold;
+      padding: 24px;
+    }
+
+    .result-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .result-badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-weight: 700;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .bullet-list li {
+      color: #d6d6d6;
+      font-size: 16px;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .bullet-list li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--gold-2);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+    }
+
+    .timeline-step {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #101010;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .quote {
+      font-size: clamp(24px, 3vw, 44px);
+      line-height: 1.15;
+      max-width: 1000px;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
 
     .gallery-item {
-      background: rgba(255,255,255,0.05);
-      padding: 16px;
-      border-radius: 16px;
+      min-height: 220px;
+      border-radius: 22px;
+      border: 1px dashed rgba(255,255,255,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      color: #c8c8c8;
+      padding: 18px;
+      font-weight: bold;
+      overflow: hidden;
+    }
+
+    .gallery-link {
+      display: block;
+      width: 100%;
+      cursor: zoom-in;
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-link:hover {
+      transform: scale(1.015);
     }
 
     .gallery-item img {
       width: 100%;
-      border-radius: 12px;
-      cursor: zoom-in;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+      background: rgba(255,255,255,0.02);
     }
 
     .gallery-caption {
-      margin-top: 10px;
+      margin-top: 12px;
+      color: #d8d8d8;
       font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
     }
 
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.92);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 999;
+      padding: 24px;
+      z-index: 9999;
     }
 
-    .lightbox.active { display: flex; }
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 96vw;
+      max-height: 96vh;
+    }
 
     .lightbox img {
-      max-width: 95%;
+      max-width: 96vw;
       max-height: 90vh;
-      border-radius: 12px;
+      width: auto;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
     }
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 30px;
-      color: white;
+      top: -14px;
+      right: -14px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 999px;
+      background: white;
+      color: black;
+      font-size: 24px;
+      font-weight: bold;
       cursor: pointer;
+      line-height: 1;
     }
 
-    @media(max-width:980px){
-      .hero-grid { grid-template-columns: 1fr; }
-      .grid-2 { grid-template-columns: 1fr; }
+    .cta {
+      padding: 42px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(214,168,79,0.20), transparent 25%),
+        linear-gradient(135deg, #111111 0%, #0c0c0c 100%);
+      border: 1px solid rgba(214,168,79,0.25);
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 { max-width: 850px; }
+    .cta p { max-width: 720px; color: #d0d0d0; }
+
+    footer {
+      padding: 36px 0 60px;
+      color: #9e9e9e;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(214,168,79,0.4), transparent);
+      margin: 24px 0 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero { min-height: auto; padding-top: 80px; }
+      .hero-grid, .case, .grid-4, .grid-3, .grid-2, .gallery {
+        grid-template-columns: 1fr;
+      }
+      .section { padding: 56px 0; }
+      .cta { padding: 28px; }
     }
   </style>
 </head>
-
 <body>
 
-<section class="hero">
-  <div class="container hero-grid">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">GG Digital LTDA</span>
+        <h1>Presença digital que <span class="highlight">chama atenção</span>, constrói autoridade e gera resultado.</h1>
+        <p class="lead">Criamos estratégias, páginas, conteúdos e campanhas para marcas, negócios e figuras públicas que precisam crescer com força no digital.</p>
 
-    <div>
-      <h1>Presença digital que <span class="highlight">chama atenção</span></h1>
+        <div class="hero-actions">
+          <a href="#cases" class="btn btn-primary">Ver projetos</a>
+          <a href="#contato" class="btn btn-secondary">Falar com a GG Digital</a>
+        </div>
 
-      <div style="margin-top:20px;">
-        <a href="#cases" class="btn btn-primary">Ver projetos</a>
+        <div class="service-list">
+          <span>Marketing Digital</span>
+          <span>Construção de Marca</span>
+          <span>Edição de Vídeos</span>
+          <span>Páginas de Alta Conversão</span>
+          <span>Criativos para Anúncios</span>
+          <span>Meta • TikTok • Taboola</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-stat">
+          <strong>Latam + Europa</strong>
+          <span>Experiência com operações e campanhas em Equador, Colômbia, Argentina, México e Espanha.</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Conteúdo + Performance</strong>
+          <span>Unimos branding, criativos e tráfego para transformar atenção em crescimento real.</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Solução completa</strong>
+          <span>Do posicionamento à execução visual, entregamos presença digital pronta para evoluir.</span>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-card">
-      <div class="hero-stat">
-        <strong>Latam + Europa</strong>
-        <span>Experiência internacional</span>
-      </div>
-      <div class="hero-stat">
-        <strong>Conteúdo + Performance</strong>
-      </div>
-      <div class="hero-stat">
-        <strong>Solução completa</strong>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Quem somos</span>
+      <p class="statement">A GG Digital LTDA nasceu para resolver um problema simples: <strong>muita gente quer crescer no digital</strong>, mas poucas têm estrutura para comunicar, aparecer e converter com consistência.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">O que entregamos</span>
+      <h2>Estrutura digital para quem precisa ser visto, lembrado e escolhido.</h2>
+      <div class="grid-3">
+        <div class="card soft">
+          <div class="icon">📈</div>
+          <h3>Marketing digital</h3>
+          <p>Planejamento e execução de campanhas com foco em alcance, crescimento, autoridade e performance.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">🎯</div>
+          <h3>Construção de marca</h3>
+          <p>Posicionamento, comunicação e direção visual para marcas e projetos que precisam parecer fortes no mercado.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">🎬</div>
+          <h3>Vídeo e criativos</h3>
+          <p>Edição de vídeos, desenvolvimento de criativos e peças visuais pensadas para atrair atenção e gerar ação.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">🖥️</div>
+          <h3>Páginas estratégicas</h3>
+          <p>Montagem de páginas para apresentação, captação, oferta e fortalecimento da presença digital.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">📱</div>
+          <h3>Conteúdo multiplataforma</h3>
+          <p>Produção voltada para YouTube, TikTok e Instagram, com linha criativa adaptada a cada canal.</p>
+        </div>
+        <div class="card soft">
+          <div class="icon">🚀</div>
+          <h3>Mídia paga</h3>
+          <p>Experiência prática com campanhas em Facebook, TikTok e Taboola para acelerar crescimento e visibilidade.</p>
+        </div>
       </div>
     </div>
+  </section>
 
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Diferenciais</span>
+      <h2>Não entregamos só peças bonitas. Entregamos estrutura com intenção.</h2>
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon">🌍</div>
+          <h3>Vivência internacional</h3>
+          <p>Campanhas e operações em diferentes mercados, com leitura prática de comportamento e adaptação de comunicação.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Velocidade de execução</h3>
+          <p>Sabemos sair da ideia para o material publicado com ritmo, consistência e visão de resultado.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🧠</div>
+          <h3>Visão estratégica</h3>
+          <p>Unimos branding, conteúdo, tráfego e apresentação em uma estrutura que fortalece a imagem do cliente.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎥</div>
+          <h3>Criativos que chamam atenção</h3>
+          <p>Experiência em desenvolver vídeos, páginas e materiais de impacto para diferentes contextos e objetivos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cases">
+    <div class="container">
+      <span class="eyebrow">Projetos e experiências</span>
+      <h2>Cases que demonstram nossa capacidade de construir presença, comunicação e resultado.</h2>
+      <p class="text" style="max-width: 900px; margin-bottom: 10px;">A GG Digital já atuou com campanhas, conteúdos e estruturas digitais em diferentes mercados, combinando estratégia, produção e execução para gerar presença e crescimento consistente.</p>
+
+      <div class="card case" style="margin-top: 28px; margin-bottom: 22px;">
+        <div>
+          <h3>Operações digitais em múltiplos países</h3>
+          <p class="text">Estruturação e execução de operações digitais em Latam e Europa, com foco em construção de páginas, criação de criativos e gestão de campanhas. Atuamos desde a validação até a escala, adaptando comunicação para diferentes mercados.</p>
+          <div class="result-badges">
+            <span>🇪🇨 Equador</span>
+            <span>🇨🇴 Colômbia</span>
+            <span>🇦🇷 Argentina</span>
+            <span>🇲🇽 México</span>
+            <span>🇪🇸 Espanha</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Estruturação completa de páginas e ofertas</li>
+            <li>Criação de criativos focados em atenção e conversão</li>
+            <li>Gestão de campanhas em Meta, TikTok e Taboola</li>
+            <li>Escala e adaptação por país e comportamento de público</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card case" style="margin-bottom: 22px;">
+        <div>
+          <h3>Projeto Japiim</h3>
+          <p class="text">Criação e organização de presença digital para conteúdo multiplataforma, com foco em constância, identidade visual e crescimento orgânico. Projeto estruturado e mantido com produção ativa durante 3 meses.</p>
+          <div class="result-badges">
+            <span>▶️ YouTube</span>
+            <span>🎵 TikTok</span>
+            <span>📸 Instagram</span>
+            <span>📅 Contrato 3 meses</span>
+          </div>
+          <ul class="bullet-list">
+            <li>Planejamento de linha editorial e conteúdo</li>
+            <li>Edição e produção de vídeos para diferentes plataformas</li>
+            <li>Padronização visual para fortalecimento de marca</li>
+            <li>Estrutura contínua de publicação e crescimento</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Como pensamos</span>
+      <h2>Nosso método combina clareza de posicionamento com força de execução.</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-step">1</div>
+          <div>
+            <h3>Leitura do objetivo</h3>
+            <p class="text">Entendemos o momento do cliente, o que ele precisa comunicar e qual imagem precisa fortalecer.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-step">2</div>
+          <div>
+            <h3>Estratégia visual e narrativa</h3>
+            <p class="text">Definimos a linha de comunicação, o tom dos conteúdos e o tipo de material ideal para gerar impacto.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-step">3</div>
+          <div>
+            <h3>Produção e montagem</h3>
+            <p class="text">Criamos vídeos, páginas, peças e estrutura digital com consistência e velocidade de entrega.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-step">4</div>
+          <div>
+            <h3>Distribuição e crescimento</h3>
+            <p class="text">Apoiamos a expansão com mídia paga e presença ativa, conectando comunicação com alcance real.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Aplicação para figuras públicas</span>
+      <p class="quote">Hoje, não basta existir. É preciso <span class="highlight">ser visto, ser lembrado e ser percebido com força</span>. É exatamente aí que a GG Digital pode atuar.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Como podemos ajudar</h3>
+          <ul class="bullet-list">
+            <li>Fortalecer a presença digital de forma profissional</li>
+            <li>Criar vídeos, peças e conteúdos que aumentem percepção de autoridade</li>
+            <li>Organizar comunicação para YouTube, Instagram e TikTok</li>
+            <li>Desenvolver campanhas para ampliar alcance e visibilidade</li>
+            <li>Construir imagem digital mais sólida, moderna e relevante</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>O que muda na prática</h3>
+          <ul class="bullet-list">
+            <li>Mais clareza na mensagem passada ao público</li>
+            <li>Mais consistência visual e estratégica</li>
+            <li>Mais presença nas plataformas onde a atenção está</li>
+            <li>Mais percepção de profissionalismo e organização</li>
+            <li>Mais capacidade de crescer com estrutura, não no improviso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Provas e materiais</span>
+      <h2>Resultados reais, campanhas ativas e estruturas já validadas.</h2>
+
+      <h3 style="margin-top:28px;">Facebook Ads — Operações Latam</h3>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="gallery-item">
+          <a href="1%20dia%2045k.jpg" class="gallery-link" data-lightbox="Resultado de campanha — 1 dia / 45k">
+            <img src="1%20dia%2045k.jpg" alt="Resultado de campanha — 1 dia / 45k">
+          </a>
+          <div class="gallery-caption">Resultado de campanha — 1 dia / 45k</div>
+        </div>
+
+        <div class="gallery-item">
+          <a href="campanha%20mx%20eq%20col.jpg" class="gallery-link" data-lightbox="Campanhas rodando — México, Equador e Colômbia">
+            <img src="campanha%20mx%20eq%20col.jpg" alt="Campanhas rodando — México, Equador e Colômbia">
+          </a>
+          <div class="gallery-caption">Campanhas rodando — México, Equador e Colômbia</div>
+        </div>
+
+        <div class="gallery-item">
+          <a href="conta%20anuncio%20facebook%20equador.png" class="gallery-link" data-lightbox="Conta de anúncio — Facebook Equador">
+            <img src="conta%20anuncio%20facebook%20equador.png" alt="Conta de anúncio — Facebook Equador">
+          </a>
+          <div class="gallery-caption">Conta de anúncio — Facebook Equador</div>
+        </div>
+
+        <div class="gallery-item">
+          <a href="roi.png" class="gallery-link" data-lightbox="Performance e retorno sobre investimento">
+            <img src="roi.png" alt="Performance e retorno sobre investimento">
+          </a>
+          <div class="gallery-caption">Performance e retorno sobre investimento</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:36px;">TikTok Ads — Campanhas Espanha</h3>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="gallery-item">
+          <a href="tiktok%20espanha.png" class="gallery-link" data-lightbox="Conta de anúncio TikTok — Espanha">
+            <img src="tiktok%20espanha.png" alt="Conta de anúncio TikTok — Espanha">
+          </a>
+          <div class="gallery-caption">Conta de anúncio TikTok — Espanha</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:36px;">Operação de vendas — Shopify Colômbia</h3>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="gallery-item">
+          <a href="majestik%20colombia.jpg" class="gallery-link" data-lightbox="Painel Shopify — Colômbia">
+            <img src="majestik%20colombia.jpg" alt="Painel Shopify — Colômbia">
+          </a>
+          <div class="gallery-caption">Painel Shopify — Colômbia</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:36px;">Estruturas de loja e operações utilizadas</h3>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="gallery-item">
+          <a href="clar%C3%A9asite.png" class="gallery-link" data-lightbox="Case - Equador">
+            <img src="clar%C3%A9asite.png" alt="Case - Equador">
+          </a>
+          <div class="gallery-caption">Case - Equador</div>
+        </div>
+
+        <div class="gallery-item">
+          <a href="novembersite.png" class="gallery-link" data-lightbox="Case - Espanha">
+            <img src="novembersite.png" alt="Case - Espanha">
+          </a>
+          <div class="gallery-caption">Case - Espanha</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:36px;">Conteúdo e presença digital — Projeto Japiim</h3>
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="gallery-item">
+          <a href="japiim%20e%20amiguinhos.png" class="gallery-link" data-lightbox="Canal / conteúdo — Japiim e Amiguinhos">
+            <img src="japiim%20e%20amiguinhos.png" alt="Canal / conteúdo — Japiim e Amiguinhos">
+          </a>
+          <div class="gallery-caption">Canal / conteúdo — Japiim e Amiguinhos</div>
+        </div>
+
+        <div class="gallery-item">
+          <a href="japiim.png" class="gallery-link" data-lightbox="Canal / conteúdo — Japiim">
+            <img src="japiim.png" alt="Canal / conteúdo — Japiim">
+          </a>
+          <div class="gallery-caption">Canal / conteúdo — Japiim</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="cta">
+        <span class="eyebrow">Contato</span>
+        <h2>Se a sua imagem, projeto ou presença digital precisa crescer com mais força, a GG Digital LTDA está pronta para construir essa estrutura com você.</h2>
+        <p class="text" style="margin-top: 12px;">Podemos atuar desde a construção visual e produção de conteúdo até campanhas e páginas estratégicas. O objetivo é simples: tirar o digital do improviso e transformar sua presença em algo forte, profissional e relevante.</p>
+        <div class="hero-actions" style="margin-top: 26px;">
+          <a href="https://wa.me/5521985758525" class="btn btn-primary">WhatsApp: (21) 98575-8525</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      GG Digital LTDA — Portfólio institucional<br/>
+      Estrutura inicial em HTML para edição, personalização e publicação.
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">×</button>
+      <img id="lightboxImg" src="" alt="">
+    </div>
   </div>
-</section>
 
-<section class="section" id="cases">
-  <div class="container">
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const galleryLinks = document.querySelectorAll('.gallery-link');
 
-    <h2>Provas e materiais</h2>
+    galleryLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        lightboxImg.src = this.getAttribute('href');
+        lightboxImg.alt = this.dataset.lightbox || 'Imagem ampliada';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
 
-    <!-- FACEBOOK -->
-    <div class="grid-2">
-
-      <div class="gallery-item">
-        <img src="1%20dia%2045k.jpg">
-        <div class="gallery-caption">Resultado campanha</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="campanha%20mx%20eq%20col.jpg">
-        <div class="gallery-caption">Campanhas Latam</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="conta%20anuncio%20facebook%20equador.png">
-        <div class="gallery-caption">Conta Facebook</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="roi.png">
-        <div class="gallery-caption">ROI</div>
-      </div>
-
-    </div>
-
-    <!-- TIKTOK -->
-    <h3 style="margin-top:40px;">TikTok</h3>
-
-    <div class="grid-2">
-      <div class="gallery-item">
-        <img src="tiktok%20espanha.png">
-        <div class="gallery-caption">TikTok Espanha</div>
-      </div>
-    </div>
-
-    <!-- SHOPIFY -->
-    <h3 style="margin-top:40px;">Shopify</h3>
-
-    <div class="grid-2">
-      <div class="gallery-item">
-        <img src="majestik%20colombia.jpg">
-        <div class="gallery-caption">Colômbia</div>
-      </div>
-    </div>
-
-    <!-- CASES -->
-    <h3 style="margin-top:40px;">Estruturas</h3>
-
-    <div class="grid-2">
-
-      <div class="gallery-item">
-        <img src="clar%C3%A9asite.png">
-        <div class="gallery-caption">Case - Equador</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="novembersite.png">
-        <div class="gallery-caption">Case - Espanha</div>
-      </div>
-
-    </div>
-
-    <!-- JAPIIM -->
-    <h3 style="margin-top:40px;">Japiim</h3>
-
-    <div class="grid-2">
-
-      <div class="gallery-item">
-        <img src="japiim%20e%20amiguinhos.png">
-        <div class="gallery-caption">Japiim e Amiguinhos</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="japiim.png">
-        <div class="gallery-caption">Japiim</div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <span class="lightbox-close" onclick="closeLightbox()">×</span>
-  <img id="lightboxImg">
-</div>
-
-<script>
-  const imgs = document.querySelectorAll(".gallery-item img");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-
-  imgs.forEach(img => {
-    img.onclick = () => {
-      lightbox.classList.add("active");
-      lightboxImg.src = img.src;
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
     }
-  });
 
-  function closeLightbox(){
-    lightbox.classList.remove("active");
-  }
-</script>
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
